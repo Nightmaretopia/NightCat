@@ -1,7 +1,7 @@
 package com.imaginarycity.nightcat;
 
 import com.imaginarycity.nightcat.util.JSONUtils;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -11,8 +11,8 @@ import java.nio.file.Path;
 
 public final class Configuration {
 
-    public static final @NotNull String discordBotToken;
-    public static final @NotNull String hypixelApiToken;
+    public static final @NonNull String discordBotToken;
+    public static final @NonNull String hypixelApiToken;
 
     private Configuration() {}
 

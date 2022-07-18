@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("io.freefair.lombok") version "6.5.0.3"
 }
 
 group = "com.imaginarycity"
@@ -11,7 +12,7 @@ repositories {
 
 dependencies {
     // Discord Library
-    implementation("net.dv8tion", "JDA", "5.0.0-alpha.13") {
+    implementation("net.dv8tion", "JDA", "5.0.0-alpha.14") {
         exclude(module = "opus-java")
     }
 

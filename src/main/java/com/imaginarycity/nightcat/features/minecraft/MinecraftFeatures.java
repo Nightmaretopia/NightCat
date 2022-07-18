@@ -1,15 +1,16 @@
-package com.imaginarycity.nightcat.features;
+package com.imaginarycity.nightcat.features.minecraft;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.imaginarycity.nightcat.util.JSONUtils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import lombok.NonNull;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
@@ -22,12 +23,13 @@ public final class MinecraftFeatures {
 
     private MinecraftFeatures() {}
 
-    public static CompletableFuture<@Nullable String> getUUIDByName(@NotNull final String name) {
-        final Function<String, @Nullable String> extractId = json -> {
+    public static CompletableFuture<Optional<String>> getUUIDByName(@NonNull final String name) {
+        final Function<String, Optional<String>> extractId = json -> {
             try {
-                return JSONUtils.parse(json).get("id").asText();
+                return Optional.ofNullable(JSONUtils.parse(json).get("id"))
+                        .map(JsonNode::asText);
             } catch (final JsonProcessingException e) {
-                return null;
+                return Optional.empty();
             }
         };
 

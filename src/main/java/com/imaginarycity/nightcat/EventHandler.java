@@ -1,9 +1,9 @@
 package com.imaginarycity.nightcat;
 
 import com.imaginarycity.nightcat.commands.CustomCommand;
+import lombok.NonNull;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.jetbrains.annotations.NotNull;
 
 public final class EventHandler extends ListenerAdapter {
     private static final EventHandler eventHandler = new EventHandler();
@@ -15,7 +15,7 @@ public final class EventHandler extends ListenerAdapter {
     }
 
     @Override
-    public void onReady(@NotNull final ReadyEvent event) {
+    public void onReady(@NonNull final ReadyEvent event) {
         final var jda = event.getJDA();
         final var allCommandData = CustomCommand.all.stream()
                 .map(command -> command.commandData)

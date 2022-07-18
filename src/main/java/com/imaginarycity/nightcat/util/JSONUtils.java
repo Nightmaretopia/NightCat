@@ -3,7 +3,7 @@ package com.imaginarycity.nightcat.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ public final class JSONUtils {
 
     private JSONUtils() {}
 
-    public static JsonNode parse(@NotNull final String content) throws JsonProcessingException {
+    public static JsonNode parse(@NonNull final String content) throws JsonProcessingException {
         return mapper.readTree(Objects.requireNonNull(content));
     }
 }
