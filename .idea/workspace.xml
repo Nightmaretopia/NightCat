@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df5b3d43-0e54-48c0-bd3b-9f83001a7b5d" name="Changes" comment="some basic stuff">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/features/hypixel/PlayerRank.java" afterDir="false" />
+    <list default="true" id="df5b3d43-0e54-48c0-bd3b-9f83001a7b5d" name="Changes" comment="more basic stuff xd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/EventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/EventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/commands/CustomCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/commands/CustomCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/commands/hypixel/HypixelStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/commands/hypixel/UpdateHypixelInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/features/HypixelFeatures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/features/hypixel/HypixelFeatures.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/features/MinecraftFeatures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/features/minecraft/MinecraftFeatures.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/util/JSONUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/util/JSONUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/commands/hypixel/UpdateHypixelInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/commands/hypixel/UpdateHypixelInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/features/hypixel/HypixelFeatures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/imaginarycity/nightcat/features/hypixel/HypixelFeatures.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658054866296</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="more basic stuff xd">
+      <created>1658153960075</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658153960075</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -139,6 +139,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="some basic stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="some basic stuff" />
+    <MESSAGE value="more basic stuff xd" />
+    <option name="LAST_COMMIT_MESSAGE" value="more basic stuff xd" />
   </component>
 </project>

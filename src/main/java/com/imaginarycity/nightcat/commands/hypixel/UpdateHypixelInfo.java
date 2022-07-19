@@ -1,7 +1,9 @@
 package com.imaginarycity.nightcat.commands.hypixel;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.imaginarycity.nightcat.commands.CustomCommand;
 import com.imaginarycity.nightcat.features.hypixel.HypixelFeatures;
+import com.imaginarycity.nightcat.features.hypixel.PlayerRank;
 import com.imaginarycity.nightcat.features.minecraft.MinecraftFeatures;
 import lombok.NonNull;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -57,12 +59,18 @@ public final class UpdateHypixelInfo extends CustomCommand {
             event.reply("Cannot find a player with the name: " + playerNameOptional.get()).queue();
             return;
         }
-
         @SuppressWarnings("OptionalGetWithoutIsPresent")
         final var uuid = playerUuidOptional.orElse(optionalUuid.get());
 
         final var playerDataOptional = HypixelFeatures.getPlayerDataByUUID(uuid).join();
         final var playerRankOptional = playerDataOptional.map(HypixelFeatures::getHighestPlayerRank);
+        final var playerLevelOptional = playerDataOptional
+                .map(node -> node.get("networkExp"))
+                .map(JsonNode::asDouble)
+                .map(HypixelFeatures::getLevel);
+
+        final var playerRank = playerRankOptional.orElse(PlayerRank.DEFAULT);
+        final var playerLevel = playerLevelOptional.orElse(0);
 
 
     }

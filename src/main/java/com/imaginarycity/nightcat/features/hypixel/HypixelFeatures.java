@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.imaginarycity.nightcat.Configuration;
 import com.imaginarycity.nightcat.util.JSONUtils;
 import lombok.NonNull;
+import org.intellij.lang.annotations.MagicConstant;
+import org.jetbrains.annotations.Range;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -20,6 +22,25 @@ public final class HypixelFeatures {
     private static final String BASE_URL = "https://api.hypixel.net";
     private static final String token = Configuration.hypixelApiToken;
     private static final HttpClient httpClient = HttpClient.newBuilder().build();
+
+    private static final int MAX_EXP_NEEDED = 3_000_000;
+    private static final int[] EXP_NEEDED = {
+            100_000, // Lvl 0 -> Lvl 1
+            150_000, // Lvl 1 -> Lvl 2
+            250_000, // Lvl 2 -> Lvl 3
+            500_000, // Etc
+            750_000,
+            1_000_000,
+            1_250_000,
+            1_500_000,
+            2_000_000,
+            2_500_000,
+            2_500_000,
+            2_500_000,
+            2_500_000,
+            2_500_000,
+            MAX_EXP_NEEDED
+    };
 
     private HypixelFeatures() {}
 
@@ -65,5 +86,23 @@ public final class HypixelFeatures {
 
     private static PlayerRank getRankField(final JsonNode node, final String fieldName) {
         return PlayerRank.fromCodeName(node.get(fieldName).asText());
+    }
+
+    public static int getLevel(double exp) {
+        if (exp < 0) {
+            throw new IllegalArgumentException("exp < 0");
+        }
+
+        for (int level = 0; ; level++) {
+            double needed = expToNextLevel(level);
+            exp -= needed;
+
+            if (exp < 0)
+                return level;
+        }
+    }
+
+    private static int expToNextLevel(final int level) {
+        return level < EXP_NEEDED.length ? EXP_NEEDED[level] : MAX_EXP_NEEDED;
     }
 }
