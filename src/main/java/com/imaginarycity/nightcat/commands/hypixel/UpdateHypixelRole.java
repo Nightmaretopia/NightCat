@@ -1,6 +1,7 @@
 package com.imaginarycity.nightcat.commands.hypixel;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.imaginarycity.nightcat.Configuration;
 import com.imaginarycity.nightcat.commands.CustomCommand;
 import com.imaginarycity.nightcat.features.hypixel.HypixelFeatures;
 import com.imaginarycity.nightcat.features.hypixel.PlayerRank;
@@ -12,12 +13,15 @@ import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-public final class UpdateHypixelInfo extends CustomCommand {
+public final class UpdateHypixelRole extends CustomCommand {
 
-    public UpdateHypixelInfo() {
+    private static final List<String> roleMapping = Configuration.configNode.get("role-mapping").findValuesAsText("");
+
+    public UpdateHypixelRole() {
         super(
                 Commands.slash("hypixel-stats", "Fetches the stats of a given player")
                         .addSubcommands(
@@ -59,6 +63,7 @@ public final class UpdateHypixelInfo extends CustomCommand {
             event.reply("Cannot find a player with the name: " + playerNameOptional.get()).queue();
             return;
         }
+
         @SuppressWarnings("OptionalGetWithoutIsPresent")
         final var uuid = playerUuidOptional.orElse(optionalUuid.get());
 

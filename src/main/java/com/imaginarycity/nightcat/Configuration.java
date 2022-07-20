@@ -13,16 +13,13 @@ import java.nio.file.Path;
 public final class Configuration {
 
     public static final @NonNull JsonNode configNode;
+    public static final @NonNull String servingGuildId;
     public static final @NonNull String discordBotToken;
     public static final @NonNull String hypixelApiToken;
 
     private Configuration() {}
 
     static {
-        JsonNode tempConfigNode;
-        String tempDiscordBotToken;
-        String tempHypixelApiToken;
-
         try {
             final var configUrl = Configuration.class.getResource("/config.json");
 
@@ -33,15 +30,12 @@ public final class Configuration {
             final var configContent = Files.readString(configPath);
             final var configJsonNode = JSONUtils.parse(configContent);
 
-            tempConfigNode = configJsonNode;
-            tempDiscordBotToken = configJsonNode.get("discord-bot-token").asText();
-            tempHypixelApiToken = configJsonNode.get("hypixel-api-token").asText();
+            configNode = configJsonNode;
+            servingGuildId = configJsonNode.get("serving-guild-id").asText();
+            discordBotToken = configJsonNode.get("discord-bot-token").asText();
+            hypixelApiToken = configJsonNode.get("hypixel-api-token").asText();
         } catch (final IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
-
-        configNode = tempConfigNode;
-        discordBotToken = tempDiscordBotToken;
-        hypixelApiToken = tempHypixelApiToken;
     }
 }
