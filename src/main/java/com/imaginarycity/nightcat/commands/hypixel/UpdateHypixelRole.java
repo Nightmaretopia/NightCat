@@ -2,24 +2,27 @@ package com.imaginarycity.nightcat.commands.hypixel;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.imaginarycity.nightcat.Configuration;
+import com.imaginarycity.nightcat.Main;
 import com.imaginarycity.nightcat.commands.CustomCommand;
 import com.imaginarycity.nightcat.features.hypixel.HypixelFeatures;
 import com.imaginarycity.nightcat.features.hypixel.PlayerRank;
 import com.imaginarycity.nightcat.features.minecraft.MinecraftFeatures;
+import com.imaginarycity.nightcat.util.RoleMapping;
+import com.imaginarycity.nightcat.util.RoleMappings;
 import lombok.NonNull;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.UserSnowflake;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public final class UpdateHypixelRole extends CustomCommand {
-
-    private static final List<String> roleMapping = Configuration.configNode.get("role-mapping").findValuesAsText("");
 
     public UpdateHypixelRole() {
         super(
@@ -30,15 +33,13 @@ public final class UpdateHypixelRole extends CustomCommand {
                                                 OptionType.STRING,
                                                 "player-id",
                                                 "The UUID of the player",
-                                                true
-                                        ),
+                                                true),
                                 new SubcommandData("name", "fetch via name")
                                         .addOption(
                                             OptionType.STRING,
                                             "player-name",
                                             "In-game name of the player",
-                                            true
-                                        )
+                                            true)
                         )
         );
     }
@@ -77,6 +78,24 @@ public final class UpdateHypixelRole extends CustomCommand {
         final var playerRank = playerRankOptional.orElse(PlayerRank.DEFAULT);
         final var playerLevel = playerLevelOptional.orElse(0);
 
+        final var rolesToAdd = new ArrayList<Role>();
 
+        RoleMappings.all.forEach(mapping -> {
+            switch (mapping) {
+                case RoleMapping.Rank rank -> {
+                    if (playerRank.compareTo(rank.requirement) >= 0)
+                        rolesToAdd.add(rank.role);
+                }
+                case RoleMapping.Level level -> {
+                    if (playerLevel >= level.requirement)
+                        rolesToAdd.add(level.role);
+                }
+            }
+        });
+
+        final var userSnowflake = UserSnowflake.fromId(event.getUser().getId());
+
+        rolesToAdd.forEach(role ->
+                Main.servingGuild.addRoleToMember(userSnowflake, role).queue());
     }
 }

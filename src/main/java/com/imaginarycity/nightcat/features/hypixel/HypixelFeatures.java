@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.imaginarycity.nightcat.Configuration;
 import com.imaginarycity.nightcat.util.JSONUtils;
 import lombok.NonNull;
-import org.intellij.lang.annotations.MagicConstant;
-import org.jetbrains.annotations.Range;
 
 import java.net.URI;
 import java.net.http.HttpClient;

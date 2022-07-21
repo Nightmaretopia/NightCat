@@ -8,7 +8,6 @@ import lombok.NonNull;
 import java.util.Objects;
 
 public final class JSONUtils {
-
     public static final ObjectMapper mapper = new ObjectMapper();
 
     private JSONUtils() {}

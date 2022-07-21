@@ -4,7 +4,7 @@ import lombok.NonNull;
 
 import java.util.List;
 
-public enum PlayerRank implements Comparable<PlayerRank> {
+public enum PlayerRank {
     DEFAULT("NONE", "No Rank"),
     VIP("VIP", "VIP"),
     VIP_PLUS("VIP_PLUS", "VIP+"),
